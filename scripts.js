@@ -8,24 +8,53 @@ var objects = ["Blocks", "Mushrooms", "Coins", "Springboards", "Goombas", "Koopa
 var nsmbuOnlyObjects = ["Propeller Mushrooms"];
 var smwOnlyObjects = ["Feathers"];
 var smb3OnlyObjects = ["Tanookis"];
-var smbOnlyObjects = [""];
+var smbOnlyObjects = [];
 
 var mechanics = ["Pipes", "Platforms", "Vines", "Doors", "Spikes", "Yoshis", "Kuribo's Shoe", "Rails", "Conveyor belts", "Sawblades", "Ice blocks",
                 "Oneway blocks"];
 var nsmbuOnlyMechanics = ["Wall-jumping", "Ground-pounding", "Spin-jumping"];
 var smwOnlyMechanics = ["Spin-jumping"];
+var smb3OnlyMechanics = [];
 var smbOnlyMechanics = ["Costumes"];
 
 var additionalMechanics = ["Scrolling", "Fast scrolling", "Slow scrolling", "Short time", "Sound effects", "Mazes", "Puzzles"];
 
-function generate() {
+function toggleStyle() {
+    var styleElement = document.getElementById("ideaStyle").parentElement;
+    var input = document.getElementById("checkboxStyle");
+    if (input.checked === true) {
+        styleElement.className = "idea";
+    } else {
+        styleElement.className = "ideaDis";
+    }
+}
 
+function toggleType() {
+    var typeElement = document.getElementById("ideaType").parentElement;
+    var input = document.getElementById("checkboxType");
+    if (input.checked === true) {
+        typeElement.className = "idea";
+    } else {
+        typeElement.className = "ideaDis";
+    }
+}
+
+function generate() {
     var outputStyleElement = document.getElementById("ideaStyle");
     var styleId = getRandom(0, style.length - 1);
-    outputStyleElement.innerHTML = getStyle(styleId);
+    if (document.getElementById("checkboxStyle").checked === true) {
+        outputStyleElement.innerHTML = getStyle(styleId);
+    } else {
+        outputStyleElement.parentElement.className = "ideaDis";
+        styleId = -1;
+    }
 
     var outputTypeElement = document.getElementById("ideaType");
-    outputTypeElement.innerHTML = getEnvironment();
+    if (document.getElementById("checkboxType").checked === true) {
+        outputTypeElement.innerHTML = getEnvironment();
+    } else {
+        outputTypeElement.parentElement.className = "ideaDis";
+    }
 
     var outputContentElement = document.getElementById("ideaContent");
     var outputText = "";
@@ -37,9 +66,7 @@ function generate() {
         } else {
             outputText = outputText.concat(getMechanic(styleId));
         }
-
-
-
+        
         if (i === objectCount - 2) {
             outputText = outputText.concat(" and ");
         }
@@ -73,7 +100,10 @@ function getEnvironment() {
 function getObject(styleId) {
     var output = "";
 
-    if (styleId === 0) {
+    if (styleId === -1) {
+        allObjects = objects.concat(smbOnlyObjects).concat(smb3OnlyObjects).concat(smwOnlyObjects).concat(nsmbuOnlyObjects);
+    }
+    else if (styleId === 0) {
         allObjects = objects.concat(smbOnlyObjects);
     }
     else if (styleId === 1) {
@@ -103,8 +133,14 @@ function getMechanic(styleId) {
     var output = "";
     var allMechanics;
 
-    if (styleId === 0) {
+    if (styleId === -1) {
+        allMechanics = mechanics.concat(smbOnlyMechanics).concat(smwOnlyMechanics).concat(smb3OnlyMechanics).concat(nsmbuOnlyMechanics);
+    }
+    else if (styleId === 0) {
         allMechanics = mechanics.concat(smbOnlyMechanics);
+    }
+    else if (styleId === 1) {
+        allMechanics = mechanics.concat(smb3OnlyMechanics);
     }
     else if (styleId === 2) {
         allMechanics = mechanics.concat(smwOnlyMechanics);

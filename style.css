@@ -16,10 +16,59 @@ div.idea {
     border: 1px solid #CCCCCC;
     border-radius: 10px;
     margin: 30px 5%;
+    display: block;
+}
+
+div.ideaDis {
+    background-color: #CCCCCC;
+    border: 1px solid #CCCCCC;
+    border-radius: 10px;
+    margin: 30px 5%;
+    display: block;
+    color: #AAAAAA;
+}
+
+div.toggleContainer {
+    text-align: center;
+    margin: -25px auto auto auto;
 }
 
 div.buttonContainer {
     text-align: center;
+}
+
+.checkbox-custom {
+    opacity: 0;
+    position: absolute;
+}
+
+.checkbox-custom, .checkbox-custom-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.checkbox-custom-label {
+    position: relative;
+    font: 20px "Arial";
+}
+
+.checkbox-custom + .checkbox-custom-label:before {
+    content: '';
+    background: #fff;
+    border: 1px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+    background: #ff7700;
 }
 
 .button {
@@ -53,11 +102,11 @@ div.buttonContainer {
     text-decoration: none;
     text-align: center;
     margin: auto;
-    -moz-user-select: none; 
+    -moz-user-select: none;
     -webkit-user-select: none;
-     -ms-user-select:none; 
-     user-select:none;
-     -o-user-select:none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
 }
 
     .button:hover {
