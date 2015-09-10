@@ -60,13 +60,23 @@ function generate() {
     var outputText = "";
 
     var objectCount = getRandom(1, 3);
+    var objectIds = [];
+    objectIds.length = objectCount;
+
     for (var i = 0; i < objectCount; i++) {
-        if (getRandom(1, 2) === 1) {
-            outputText = outputText.concat(getObject(styleId));
-        } else {
-            outputText = outputText.concat(getMechanic(styleId));
-        }
-        
+
+        var newObject = "";
+        do {
+            if (getRandom(1, 2) === 1) {
+                newObject = getObject(styleId);
+            } else {
+                newObject = getMechanic(styleId);
+            }
+        } while (contains(objectIds, newObject) === true);
+
+        objectIds.push(newObject);
+        outputText = outputText.concat(newObject);
+
         if (i === objectCount - 2) {
             outputText = outputText.concat(" and ");
         }
@@ -164,4 +174,13 @@ function getAdditionalMechanic() {
 
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] === obj) {
+            return true;
+        }
+    }
+    return false;
 }
