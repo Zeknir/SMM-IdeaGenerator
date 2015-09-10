@@ -53,6 +53,11 @@ div.buttonContainer {
     text-decoration: none;
     text-align: center;
     margin: auto;
+    -moz-user-select: none; 
+    -webkit-user-select: none;
+     -ms-user-select:none; 
+     user-select:none;
+     -o-user-select:none;
 }
 
     .button:hover {
