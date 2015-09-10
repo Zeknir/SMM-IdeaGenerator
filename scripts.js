@@ -10,12 +10,12 @@ var smwOnlyObjects = ["Feathers"];
 var smb3OnlyObjects = ["Tanookis"];
 var smbOnlyObjects = [];
 
-var mechanics = ["Pipes", "Platforms", "Vines", "Doors", "Spikes", "Yoshis", "Kuribo's Shoe", "Rails", "Conveyor belts", "Sawblades", "Ice blocks",
+var mechanics = ["Pipes", "Platforms", "Vines", "Doors", "Spikes", "Rails", "Conveyor belts", "Sawblades", "Ice blocks",
                 "Oneway blocks"];
-var nsmbuOnlyMechanics = ["Wall-jumping", "Ground-pounding", "Spin-jumping"];
-var smwOnlyMechanics = ["Spin-jumping"];
-var smb3OnlyMechanics = [];
-var smbOnlyMechanics = ["Costumes"];
+var nsmbuOnlyMechanics = ["Wall-jumping", "Ground-pounding", "Spin-jumping", "Yoshis"];
+var smwOnlyMechanics = ["Spin-jumping", "Yoshis"];
+var smb3OnlyMechanics = ["Kuribo's Shoe"];
+var smbOnlyMechanics = ["Costumes", "Kuribo's Shoe"];
 
 var additionalMechanics = ["Scrolling", "Fast scrolling", "Slow scrolling", "Short time", "Sound effects", "Mazes", "Puzzles"];
 
@@ -46,7 +46,6 @@ function generate() {
         outputStyleElement.innerHTML = getStyle(styleId);
     } else {
         outputStyleElement.parentElement.className = "ideaDis";
-        styleId = -1;
     }
 
     var outputTypeElement = document.getElementById("ideaType");
@@ -110,10 +109,7 @@ function getEnvironment() {
 function getObject(styleId) {
     var output = "";
 
-    if (styleId === -1) {
-        allObjects = objects.concat(smbOnlyObjects).concat(smb3OnlyObjects).concat(smwOnlyObjects).concat(nsmbuOnlyObjects);
-    }
-    else if (styleId === 0) {
+    if (styleId === 0) {
         allObjects = objects.concat(smbOnlyObjects);
     }
     else if (styleId === 1) {
@@ -143,10 +139,7 @@ function getMechanic(styleId) {
     var output = "";
     var allMechanics;
 
-    if (styleId === -1) {
-        allMechanics = mechanics.concat(smbOnlyMechanics).concat(smwOnlyMechanics).concat(smb3OnlyMechanics).concat(nsmbuOnlyMechanics);
-    }
-    else if (styleId === 0) {
+    if (styleId === 0) {
         allMechanics = mechanics.concat(smbOnlyMechanics);
     }
     else if (styleId === 1) {
